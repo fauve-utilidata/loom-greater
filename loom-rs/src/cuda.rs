@@ -25,7 +25,7 @@ pub fn run(input_data: &[f32]) -> Vec<cfftComplex> {
         let fft_size = input_data.len() / batch;
 
         let input_ptr = unified_malloc(input_data.len() * size_of::<f32>()) as *mut f32;
-        let output_len = (fft_size / 2 + 1) * batch;
+        let output_len = ((fft_size /) 2 + 1) * batch;
         let output_ptr = unified_malloc(output_len * size_of::<cfftComplex>()) as *mut cfftComplex;
 
         println!("a");
