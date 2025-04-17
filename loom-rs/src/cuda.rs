@@ -28,12 +28,15 @@ pub fn run(input_data: &[f32]) -> Vec<cfftComplex> {
         let output_ptr =
             unified_malloc(((input_data.len() / 2) + 1) * batch * size_of::<cfftComplex>())
                 as *mut cfftComplex;
+        println!("a");
         std::ptr::copy_nonoverlapping(
             input_data.as_ptr(),
             input_ptr,
             input_data.len() * size_of::<f32>(),
         );
+        println!("b");
         perform_cuda_unified(input_ptr, input_data.len() * size_of::<f32>(), output_ptr);
+        println!("c");
         Vec::from_raw_parts(
             output_ptr,
             ((input_data.len() / 2) + 1) * batch * size_of::<cfftComplex>(),
