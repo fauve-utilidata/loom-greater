@@ -9,6 +9,7 @@ pub struct IngestionConfig {
 #[derive(Clone, Debug, Deserialize)]
 pub struct ComputationConfig {
     pub num_samples_per_compute: usize,
+    pub use_cuda: bool,
 }
 
 #[derive(Debug, Clone, Deserialize)]
@@ -26,6 +27,7 @@ pub fn jetson_config() -> Config {
         },
         computation_config: ComputationConfig {
             num_samples_per_compute: 32000,
+            use_cuda: true,
         },
     }
 }
@@ -39,6 +41,7 @@ pub fn dummy_ingestion_config() -> Config {
         },
         computation_config: ComputationConfig {
             num_samples_per_compute: 32000,
+            use_cuda: false,
         },
     }
 }
