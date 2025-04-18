@@ -34,6 +34,9 @@ pub fn run(input_data: &[f32]) -> Vec<cfftComplex> {
         perform_cuda_unified(input_ptr, input_data.len() * size_of::<f32>(), output_ptr);
         println!("c");
         let output_len = ((input_data.len() / 2) + 1) * batch;
-        Vec::from_raw_parts(output_ptr, output_len, output_len)
+        let v = Vec::from_raw_parts(output_ptr, output_len, output_len);
+        unified_free(input_ptr as *mut libc::c_void);
+        unified_free(output_ptr as *mut libc::c_void);
+        v
     }
 }
