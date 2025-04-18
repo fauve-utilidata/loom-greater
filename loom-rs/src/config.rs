@@ -27,7 +27,7 @@ pub fn jetson_config() -> Config {
         },
         computation_config: ComputationConfig {
             num_samples_per_compute: 32000,
-            use_cuda: true,
+            use_cuda: false,
         },
     }
 }
